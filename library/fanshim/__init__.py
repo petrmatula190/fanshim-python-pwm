@@ -29,10 +29,29 @@ class FanShim():
 
         atexit.register(self._cleanup)
 
+        #Original Versiom
+        #GPIO.setwarnings(False)
+        #GPIO.setmode(GPIO.BCM)
+        #GPIO.setup(self._pin_fancontrol, GPIO.OUT)
+        #GPIO.setup(self._pin_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        
+
+        #PWM Version
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self._pin_fancontrol, GPIO.OUT)
+
+        # PWM Version added parameters
+        self.pwm_freq = 6
+        self.pwm_speed = 70
+        self.fan_state = True
+
+        # Still need this if want button to work !! BUT if I have this line get errors have not fixed yet
         GPIO.setup(self._pin_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self._pin_fancontrol, GPIO.OUT)
+        self.pwm_out = GPIO.PWM(self._pin_fancontrol,1)
+        self.pwm_out.start(0)
+        self.pwm_out.ChangeFrequency(self.pwm_freq)
+        self.pwm_out.ChangeDutyCycle(self.pwm_speed)
 
         plasma.set_clear_on_exit(True)
         plasma.set_light_count(1)
@@ -71,7 +90,7 @@ class FanShim():
         if handler is not None:
             attach_handler(handler)
         else:
-            return attach_handler
+            return attach_handler#################--on-theshold
 
     def on_hold(self, handler=None):
         """Attach function to button hold event."""
@@ -91,14 +110,21 @@ class FanShim():
 
         """
         self._button_hold_time = hold_time
-
+############################--on-theshold
     def get_fan(self):
         """Get current fan state."""
-        return GPIO.input(self._pin_fancontrol)
+        #Original Version
+        #return GPIO.input(self._pin_fancontrol)
+        #PWM Version
+        return self.fan_state
 
     def toggle_fan(self):
         """Toggle fan state."""
+        #Original Version
+        #return self.set_fan(False if self.get_fan() else True)
+        #PWM Version
         return self.set_fan(False if self.get_fan() else True)
+        
 
     def set_fan(self, fan_state):
         """Set the fan on/off.
@@ -106,8 +132,16 @@ class FanShim():
         :param fan_state: True/False for on/off
 
         """
-        GPIO.output(self._pin_fancontrol, True if fan_state else False)
-        return True if fan_state else False
+        # Original Version
+        #GPIO.output(self._pin_fancontrol, True if fan_state else False)
+        #return True if fan_state else False
+        # PWM Version
+        if status:
+            self.pwm_out.ChangeDutyCycle(self.pwm_speed)
+            self.fan_state = True
+        else:
+            self.pwm_out.ChangeDutyCycle(0)
+            self.fan_state = False
 
     def set_light(self, r, g, b):
         """Set LED.
