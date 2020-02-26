@@ -1,3 +1,14 @@
+This is a modified version set to run the Fan slower and quieter using Pulse Width Modulation.
+
+All the changes made are in /library/fanshim/__init__.py.
+
+I have added some tmux files to enable running /examples/automatic.py  automatically at start up.
+
+There is a txt file showing the changes needed to /etc/rc.local
+
+
+
+
 # Fan Shim for Raspberry Pi
 
 [![Build Status](https://travis-ci.com/pimoroni/fanshim-python.svg?branch=master)](https://travis-ci.com/pimoroni/fanshim-python)
