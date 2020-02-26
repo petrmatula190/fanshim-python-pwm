@@ -89,7 +89,7 @@ class FanShim():
         if handler is not None:
             attach_handler(handler)
         else:
-            return attach_handler#################--on-theshold
+            return attach_handler
 
     def on_hold(self, handler=None):
         """Attach function to button hold event."""
@@ -109,7 +109,7 @@ class FanShim():
 
         """
         self._button_hold_time = hold_time
-############################--on-theshold
+
     def get_fan(self):
         """Get current fan state."""
         #Original Version
