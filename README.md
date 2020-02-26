@@ -1,14 +1,27 @@
-This is a modified version set to run the Fan slower and quieter using Pulse Width Modulation.
-
+#  What is this
+This is a modified version of the code for the Pimorini cooling fan set to run the Fan slower and quieter using Pulse Width Modulation (PWM).
+This is based on versio 0.0.4 cloned on February 24th 2020 from https://github.com/pimoroni/fanshim-python  
 All the changes made are in /library/fanshim/__init__.py.
-
 I have added some tmux files to enable running /examples/automatic.py  automatically at start up.
-
 There is a txt file showing the changes needed to /etc/rc.local
+#  Suggested method to install
+My prefered way to install this software is to clone it using Git and then run it using tmux as described below.
+* open a terminal
+* make a director using  "mkdir fanshim" so that it is "/home/pi/fanshim"
+* clone into that directory usig "git clone https://github.com/DT-was-an-ET/fanshim-python-pwm.git  /home/pi/fanshim
+* go to "/home/pi/fanshim/example" and test by entering
+* "python3 automatic.py --on-threshold 45 --off-threshold 47 --delay 6 --brightness 2 –verbose”
+*  fan should run as Pi warms up, stop running by typing "ctrl c"
+* install tmux if not installed already using "sudo apt install tmux"
+* test the tmux file by entering "./tmux_start.sh" check its running with "tmux ls" observe with "tmux a -t fanshim"
+* edit "/etc/rc.local" using the command "sudo nano /etc/rc.local" to add
+     "sudo -u pi bash /home/pi/fanshim/tmux_start.sh &"
+     before "exit 0" at the end of the file.
+* reboot and code should run automatically.  You can check its running by entering "tmux ls" in a terminal.
 
+The original method of install and run as detailed beloow should also work but I have not tested it as I prefer tmux.
 
-
-
+Original Pimorinii Readme file...........
 # Fan Shim for Raspberry Pi
 
 [![Build Status](https://travis-ci.com/pimoroni/fanshim-python.svg?branch=master)](https://travis-ci.com/pimoroni/fanshim-python)
