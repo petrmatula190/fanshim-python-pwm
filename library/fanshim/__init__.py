@@ -41,11 +41,10 @@ class FanShim():
         GPIO.setmode(GPIO.BCM)
 
         # PWM Version added parameters
-        self.pwm_freq = 6
-        self.pwm_speed = 70
+        self.pwm_freq = 4
+        self.pwm_speed = 80
         self.fan_state = True
 
-        # Still need this if want button to work !! BUT if I have this line get errors have not fixed yet
         GPIO.setup(self._pin_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._pin_fancontrol, GPIO.OUT)
         self.pwm_out = GPIO.PWM(self._pin_fancontrol,1)
