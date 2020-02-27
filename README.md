@@ -8,7 +8,8 @@ There is a txt file showing the changes needed to /etc/rc.local
 My  preferred  way to install this software is to clone it using Git and then run it using tmux as described below.
 * open a terminal
 * make a director using  "mkdir fanshim" so that it is "/home/pi/fanshim"
-* clone into that directory using "git clone https://github.com/DT-was-an-ET/fanshim-python-pwm.git  /home/pi/fanshim
+* clone into that directory using "git clone https://github.com/grayerbeard/fanshim-python-pwm.git  /home/pi/fanshim
+* at the /home/pi/fanshim directory enter "sudo ./install.sh"
 * go to "/home/pi/fanshim/example" and test by entering
 * "python3 automatic.py --on-threshold 45 --off-threshold 47 --delay 6 --brightness 2 –verbose”
 *  fan should run as Pi warms up, stop running by typing "ctrl c"
@@ -20,7 +21,16 @@ My  preferred  way to install this software is to clone it using Git and then ru
 * reboot and code should run automatically.  You can check its running by entering "tmux ls" in a terminal.
 
 The original method of install and run as detailed below should also work but I have not tested it as I prefer using tmux as I find it easier if I want to check what is going on or make changes.
-If on your system you have a different user directory, e.g. on volumio you would have "volumio" instead of "pi" then in every case above replace "pi" with "volumio".
+If on your system you have a different user directory, e.g. on volumio you would have "volumio" instead of "pi" then in every case above replace "pi" with "volumio". (Als edit the directoris in tmux)start.sh to replace "pi" with "volumio")
+
+On some syatms the ./tmux_stress.sh command will not work due to lack of working vcgencmd and stress.
+
+On some other OS like volumio you may also need to do all or some these commands before running the code (after doing sudo ./install.sh)
+* sudo apt update
+* sudo apt install python3
+* sudo apt install python3-pip
+* sudo pip3 install RPi.GPIO
+* sudo pip3 install psutil --upgrade
 
 Original Pimorini Readme file...........
 # Fan Shim for Raspberry Pi
