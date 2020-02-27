@@ -108,6 +108,7 @@ class FanShim():
         :param hold_time: Amount of time button must be held to trigger on_hold (in seconds)
 
         """
+        self._button_hold_time = hold_time
 
     def get_fan(self):
         """Get current fan state."""
