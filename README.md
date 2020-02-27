@@ -32,6 +32,15 @@ On some other OS like volumio you may also need to do all or some these commands
 * sudo pip3 install RPi.GPIO
 * sudo pip3 install psutil --upgrade
 
+# PWM Parameters
+These are set within /fanshi,/library/fanshim__init__,py in this snipit of code (frequency 4 Hz, PWM % 80)
+
+        self.pwm_freq = 4
+        
+        self.pwm_speed = 80
+        
+These can be adjusted as required but only a limited range of values work.
+
 Original Pimorini Readme file...........
 # Fan Shim for Raspberry Pi
 
