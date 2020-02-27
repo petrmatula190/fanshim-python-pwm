@@ -33,7 +33,7 @@ On some other OS like volumio you may also need to do all or some these commands
 * sudo pip3 install psutil --upgrade
 
 # PWM Parameters
-These are set within /fanshim/library/fanshim/\_\_init\_\.py in this snipit of code (frequency 4 Hz, PWM % 80)
+These are set within /fanshim/library/fanshim/\_\_init\_\_.py in this snipit of code (frequency 4 Hz, PWM % 80)
 
         self.pwm_freq = 4
         
