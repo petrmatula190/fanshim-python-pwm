@@ -11,8 +11,8 @@ My  preferred  way to install this software is to clone it using Git and then ru
 * clone into that directory using "git clone https://github.com/grayerbeard/fanshim-python-pwm.git  /home/pi/fanshim
 * at the /home/pi/fanshim directory enter "sudo ./install.sh"
 * go to "/home/pi/fanshim/example" and test by entering
-* "python3 automatic.py --on-threshold 45 --off-threshold 47 --delay 6 --brightness 2 –verbose”
-*  fan should run as Pi warms up, stop running by typing "ctrl c"
+* "python3 automatic.py --on-threshold 46 --off-threshold 44 --delay 6 --brightness 2 –verbose”
+*  fan should run soon as Pi warms up to these fairly low temperature settings, stop running by typing "ctrl c"
 * install tmux if not installed already using "sudo apt install tmux"
 * test the tmux file by entering "./tmux_start.sh" check its running with "tmux ls" observe with "tmux a -t fanshim"
 * edit "/etc/rc.local" using the command "sudo nano /etc/rc.local" to add
