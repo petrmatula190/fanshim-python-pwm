@@ -3,7 +3,10 @@ This is a modified version of the code for the Pimorini cooling fan set to run t
 This is based on version 0.0.4 cloned on February 25th 2020 from https://github.com/pimoroni/fanshim-python  
 All the changes made are in "fanshim/library/fanshim/\_\_init\_\_.py".
 I have added some tmux files to enable running /examples/automatic.py  automatically at start up.
+
 There is a txt file showing the changes needed to /etc/rc.local
+
+In a 100% load test for 15 minutes at 80% speed the CPU temperature on my R Pi 4 (not over clocked) settled at 59 degrees C.
 #  Suggested method to install
 My  preferred  way to install this software is to clone it using Git and then run it using tmux as described below.
 * open a terminal
