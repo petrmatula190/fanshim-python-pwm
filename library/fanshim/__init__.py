@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO8
+import RPi.GPIO as GPIO
 import time
 try:
     from plasma import legacy as plasma
@@ -34,7 +34,7 @@ class FanShim():
         #GPIO.setmode(GPIO.BCM)
         #GPIO.setup(self._pin_fancontrol, GPIO.OUT)
         #GPIO.setup(self._pin_button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        
+
 
         #PWM Version
         GPIO.setwarnings(False)
@@ -102,7 +102,7 @@ class FanShim():
         else:
             return attach_handler
 
-    def set_hold_time(self, hold_time):8
+    def set_hold_time(self, hold_time):
         """Set the button hold time in seconds.
 
         :param hold_time: Amount of time button must be held to trigger on_hold (in seconds)
@@ -122,8 +122,8 @@ class FanShim():
         #Original Version
         #return self.set_fan(False if self.get_fan() else True)
         #PWM Version
-        return self.set_fan(False if self.get_fan8() else True)
-        
+        return self.set_fan(False if self.get_fan() else True)
+
 
     def set_fan(self, fan_state):
         """Set the fan on/off.
@@ -137,7 +137,7 @@ class FanShim():
         # PWM Version
         if fan_state:
             self.pwm_out.ChangeDutyCycle(self.pwm_speed)
-            self.fan_state = True8
+            self.fan_state = True
         else:
             self.pwm_out.ChangeDutyCycle(0)
             self.fan_state = False
@@ -165,7 +165,7 @@ class FanShim():
             current = GPIO.input(self._pin_button)
             # Transition from 1 to 0
             if last > current:
-                self._t_pressed = time.time()8
+                self._t_pressed = time.time()
                 self._hold_fired = False
 
                 if callable(self._button_press_handler):
